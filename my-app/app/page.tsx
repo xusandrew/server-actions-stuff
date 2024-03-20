@@ -15,8 +15,8 @@ export default async function Home() {
   return (
     <main>
       <h1 className="sr-only">Todos</h1>
-      {/* <AddFormSimple /> */}
-      <AddForm />
+      <AddFormSimple />
+      {/* <AddForm /> */}
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>

@@ -1,3 +1,5 @@
+// "use client"; // cannot use 'use client' when defining a server action in file
+
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 
