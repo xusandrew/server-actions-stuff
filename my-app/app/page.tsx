@@ -1,5 +1,6 @@
-import { AddForm } from "@/app/add-form";
-import { DeleteForm } from "@/app/delete-form";
+import { AddForm } from "@/components/add-form";
+import { AddFormSimple } from "../components/add-form-simple";
+import { DeleteForm } from "@/components/delete-form";
 
 import { sql } from "@vercel/postgres";
 
@@ -14,6 +15,7 @@ export default async function Home() {
   return (
     <main>
       <h1 className="sr-only">Todos</h1>
+      {/* <AddFormSimple /> */}
       <AddForm />
       <ul>
         {todos.map((todo) => (

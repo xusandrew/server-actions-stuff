@@ -1,30 +1,30 @@
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
-import { deleteTodo } from "@/app/actions";
+import { createTodo } from "@/actions/actions";
 
 const initialState = {
   message: "",
 };
 
-function DeleteButton() {
+function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
     <button type="submit" aria-disabled={pending}>
-      Delete
+      Add
     </button>
   );
 }
 
-export function DeleteForm({ id, todo }: { id: number; todo: string }) {
-  const [state, formAction] = useFormState(deleteTodo, initialState);
+export function AddForm() {
+  const [state, formAction] = useFormState(createTodo, initialState);
 
   return (
     <form action={formAction}>
-      <input type="hidden" name="id" value={id} />
-      <input type="hidden" name="todo" value={todo} />
-      <DeleteButton />
+      <label htmlFor="todo">Enter Task</label>
+      <input type="text" id="todo" name="todo" required />
+      <SubmitButton />
       <p aria-live="polite" className="sr-only" role="status">
         {state?.message}
       </p>
