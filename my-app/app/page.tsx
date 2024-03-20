@@ -1,14 +1,15 @@
-import postgres from "postgres";
-
 import { AddForm } from "@/app/add-form";
 import { DeleteForm } from "@/app/delete-form";
 
-let sql = postgres(process.env.DATABASE_URL || process.env.POSTGRES_URL!, {
-  ssl: "allow",
-});
+import { sql } from "@vercel/postgres";
+
+// await sql`CREATE TABLE todos (
+//   id SERIAL PRIMARY KEY,
+//   text TEXT NOT NULL
+// );`;
 
 export default async function Home() {
-  let todos = await sql`SELECT * FROM todos`;
+  let { rows: todos } = await sql`SELECT * FROM todos`;
 
   return (
     <main>

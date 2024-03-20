@@ -1,12 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import postgres from "postgres";
 import { z } from "zod";
-
-let sql = postgres(process.env.DATABASE_URL || process.env.POSTGRES_URL!, {
-  ssl: "allow",
-});
+import { sql } from "@vercel/postgres";
 
 // CREATE TABLE todos (
 //   id SERIAL PRIMARY KEY,
@@ -17,7 +13,7 @@ export async function createTodo(
   prevState: {
     message: string;
   },
-  formData: FormData,
+  formData: FormData
 ) {
   const schema = z.object({
     todo: z.string().min(1),
@@ -49,7 +45,7 @@ export async function deleteTodo(
   prevState: {
     message: string;
   },
-  formData: FormData,
+  formData: FormData
 ) {
   const schema = z.object({
     id: z.string().min(1),
